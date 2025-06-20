@@ -1,0 +1,27 @@
+# Core backend dependencies
+fastapi
+uvicorn
+sqlalchemy
+alembic
+pydantic
+python-dotenv
+
+# Database drivers (choose one based on your DB)
+psycopg2-binary  # PostgreSQL
+# mysqlclient    # MySQL (uncomment if using MySQL)
+# asyncpg        # Async PostgreSQL (optional)
+
+# Caching (optional)
+redis
+
+# For vector database integration (optional, e.g., Qdrant)
+qdrant-client
+
+# Testing
+pytest
+httpx
+
+# Linting/Formatting (optional)
+black
+isort
+flake8
