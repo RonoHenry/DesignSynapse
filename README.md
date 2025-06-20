@@ -1,4 +1,4 @@
-# 🎨✨ DesignSynapse – AI-Powered Client Consultation Platform ✨🤖
+# 🎨✨ DesignSynapse✨🤖
 
 ![AI Sticker](https://img.shields.io/badge/AI-Powered-blueviolet?style=for-the-badge&logo=OpenAI)
 ![React Sticker](https://img.shields.io/badge/React-UI-blue?style=for-the-badge&logo=react)
