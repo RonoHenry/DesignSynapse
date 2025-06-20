@@ -9,7 +9,7 @@
 
 ## 🚀 Overview
 
-**DesignSynapse** is a creative AI/ML-powered platform for seamless client consultation. It features a smart chat interface that gathers project requirements and generates a tailored design brief, making the design process smooth and interactive.
+**DesignSynapse** is a full-stack, AI-driven platform purpose-built for the DAEC (Design, Architecture, Engineering, Construction) industry. It features an intelligent consultation interface that engages clients in natural conversations, captures project requirements, and generates tailored design briefs. By combining machine learning with interactive UX, DesignSynapse streamlines early-stage project scoping and bridges the gap between vision and execution.
 
 ---
 
