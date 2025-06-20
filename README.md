@@ -80,4 +80,3 @@ MIT License
 
 ---
 
-> Made with ❤️ by creative AI/ML developers!
