@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/v1/ai/clientsync";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([
@@ -7,61 +9,97 @@ const ChatBox = () => {
   ]);
   const [input, setInput] = useState("");
   const [designBrief, setDesignBrief] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const chatEndRef = useRef(null);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, designBrief]);
 
   const handleSend = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || loading) return;
+    setErrorMsg("");
+    setLoading(true);
 
-    // Add user message to chat
     const newMessages = [...messages, { sender: "User", text: input }];
     setMessages(newMessages);
     setInput("");
 
     try {
-      // Send input to backend API
-      const response = await axios.post("http://localhost:8000/v1/ai/clientsync", {
+      const response = await axios.post(API_URL, {
         messages: newMessages,
       });
       const brief = response.data.design_brief;
-
-      // Add AI response and brief
       setMessages([...newMessages, { sender: "AI", text: "Got it! Here’s your design brief:" }]);
       setDesignBrief(brief);
     } catch (error) {
-      console.error("Error calling API:", error);
       setMessages([...newMessages, { sender: "AI", text: "Oops, something went wrong!" }]);
+      setErrorMsg("Failed to reach the server. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <div className="h-96 overflow-y-auto border p-4 mb-4 rounded">
+    <div className="max-w-2xl mx-auto p-4 bg-white rounded shadow">
+      <div className="h-96 overflow-y-auto border p-4 mb-4 rounded bg-gray-50">
         {messages.map((msg, index) => (
-          <div key={index} className={`mb-2 ${msg.sender === "User" ? "text-right" : "text-left"}`}>
-            <span className={`inline-block p-2 rounded ${msg.sender === "User" ? "bg-blue-200" : "bg-gray-200"}`}>
+          <div key={index} className={`mb-2 flex ${msg.sender === "User" ? "justify-end" : "justify-start"}`}>
+            <span
+              className={`inline-block p-2 rounded-lg max-w-xs break-words ${
+                msg.sender === "User" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-900"
+              }`}
+              aria-label={msg.sender === "User" ? "Your message" : "AI message"}
+            >
               {msg.text}
             </span>
           </div>
         ))}
         {designBrief && (
           <div className="mt-4 p-4 bg-green-100 rounded">
-            <h3 className="font-bold">Design Brief:</h3>
-            <p>{designBrief}</p>
+            <h3 className="font-bold mb-1">Design Brief:</h3>
+            <p className="whitespace-pre-line">{designBrief}</p>
           </div>
         )}
+        <div ref={chatEndRef} />
       </div>
-      <div className="flex">
+      {errorMsg && <div className="text-red-600 mb-2">{errorMsg}</div>}
+      <form
+        className="flex"
+        onSubmit={e => {
+          e.preventDefault();
+          handleSend();
+        }}
+        aria-label="Chat input form"
+      >
         <input
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSend()}
-          className="flex-1 p-2 border rounded-l"
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleInputKeyDown}
+          className="flex-1 p-2 border rounded-l focus:outline-none focus:ring"
           placeholder="Type your response..."
+          aria-label="Type your response"
+          disabled={loading}
+          autoFocus
         />
-        <button onClick={handleSend} className="p-2 bg-blue-500 text-white rounded-r">
-          Send
+        <button
+          type="submit"
+          className={`p-2 px-4 bg-blue-600 text-white rounded-r transition-opacity ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+          disabled={loading}
+          aria-label="Send message"
+        >
+          {loading ? "Sending..." : "Send"}
         </button>
-      </div>
+      </form>
     </div>
   );
 };
