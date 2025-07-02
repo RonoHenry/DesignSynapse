@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design Synapse Design System */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    /* Design Synapse Custom Variables */
+    --synapse-blue: 210 100% 50%;
+    --synapse-teal: 180 100% 50%;
+    --synapse-orange: 25 100% 60%;
+    --synapse-dark: 220 39% 11%;
+    --synapse-gray: 220 14% 96%;
+  }
+
+  .dark {
+    --background: 222 47% 7%; /* deep blue-black */
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 10%; /* slightly lighter for cards */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 200 98% 60%; /* vibrant blue for accents */
+    --primary-foreground: 222 47% 7%;
+
+    --secondary: 265 60% 18%; /* deep purple for secondary */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 20% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 170 100% 35%; /* teal accent */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 80% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 20% 18%;
+    --input: 222 20% 18%;
+    --ring: 200 98% 60%;
+
+    /* Artistic gradients and custom colors */
+    --synapse-blue: 200 98% 60%;
+    --synapse-teal: 170 100% 35%;
+    --synapse-orange: 30 98% 60%;
+    --synapse-dark: 222 47% 7%;
+    --synapse-gray: 222 20% 16%;
+    /* Glow effect for cards */
+    --card-glow: 200 98% 60% / 0.10;
+  }
+
+  .custom {
+    --background: 270 50% 8%;
+    --foreground: 280 20% 95%;
+
+    --card: 270 50% 12%;
+    --card-foreground: 280 20% 95%;
+
+    --popover: 270 50% 12%;
+    --popover-foreground: 280 20% 95%;
+
+    --primary: 280 100% 70%;
+    --primary-foreground: 270 50% 8%;
+
+    --secondary: 270 30% 20%;
+    --secondary-foreground: 280 20% 95%;
+
+    --muted: 270 30% 20%;
+    --muted-foreground: 280 10% 70%;
+
+    --accent: 270 30% 20%;
+    --accent-foreground: 280 20% 95%;
+
+    --destructive: 0 80% 60%;
+    --destructive-foreground: 280 20% 95%;
+
+    --border: 270 30% 25%;
+    --input: 270 30% 25%;
+    --ring: 280 100% 70%;
+
+    /* Custom theme synapse colors */
+    --synapse-blue: 280 100% 70%;
+    --synapse-teal: 260 100% 70%;
+    --synapse-orange: 320 100% 70%;
+    --synapse-dark: 270 50% 8%;
+    --synapse-gray: 270 30% 15%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html, body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+}
+
+@layer components {
+  .synapse-gradient {
+    background: linear-gradient(135deg, hsl(var(--synapse-blue)) 0%, hsl(var(--synapse-teal)) 100%);
+    box-shadow: 0 4px 32px 0 hsl(var(--synapse-blue) / 0.10);
+  }
+
+  .synapse-gradient-orange {
+    background: linear-gradient(135deg, hsl(var(--synapse-orange)) 0%, #ff6b35 100%);
+    box-shadow: 0 4px 32px 0 hsl(var(--synapse-orange) / 0.10);
+  }
+
+  .dark .card, .dark .bg-card {
+    box-shadow: 0 2px 24px 0 hsl(var(--card-glow));
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--card));
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  /* Ensure all headings and main containers inherit the foreground color */
+  h1, h2, h3, h4, h5, h6, .heading, .main-heading {
+    color: hsl(var(--foreground));
+    transition: color 0.3s;
+  }
+
+  /* Utility for forcing background to theme background */
+  .bg-theme {
+    background-color: hsl(var(--background)) !important;
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Theme-specific custom gradients */
+  .custom .synapse-gradient-orange {
+    background: linear-gradient(135deg, hsl(var(--synapse-orange)) 0%, #e91e63 100%);
+  }
+}
+
+@layer utilities {
+  .text-synapse-blue {
+    color: hsl(var(--synapse-blue));
+  }
+  .text-synapse-teal {
+    color: hsl(var(--synapse-teal));
+  }
+  .text-synapse-orange {
+    color: hsl(var(--synapse-orange));
+  }
+  .bg-synapse-dark {
+    background-color: hsl(var(--synapse-dark));
+  }
+  .bg-synapse-gray {
+    background-color: hsl(var(--synapse-gray));
+  }
+  .glow-border {
+    box-shadow: 0 0 0 2px hsl(var(--primary)), 0 2px 24px 0 hsl(var(--primary) / 0.10);
+    border-radius: var(--radius);
+  }
+}

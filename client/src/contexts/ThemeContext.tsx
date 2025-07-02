@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'custom';
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -24,18 +24,15 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem('design-synapse-theme');
-    return (saved as Theme) || 'light';
+    return saved === 'dark' ? 'dark' : 'light';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    
-    // Remove existing theme classes
-    root.classList.remove('light', 'dark', 'custom');
-    
+    // Remove both theme classes
+    root.classList.remove('light', 'dark');
     // Add current theme class
     root.classList.add(theme);
-    
     // Save to localStorage
     localStorage.setItem('design-synapse-theme', theme);
   }, [theme]);

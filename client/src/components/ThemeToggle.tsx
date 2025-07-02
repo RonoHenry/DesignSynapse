@@ -17,9 +17,6 @@ const ThemeToggle = () => {
       case 'dark':
         return <Moon className="w-5 h-5" />;
       case 'light':
-        return <Sun className="w-5 h-5" />;
-      case 'custom':
-        return <Palette className="w-5 h-5" />;
       default:
         return <Sun className="w-5 h-5" />;
     }
@@ -46,13 +43,6 @@ const ThemeToggle = () => {
         >
           <Moon className="w-4 h-4" />
           <span>Dark Mode</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme('custom')}
-          className="flex items-center space-x-2 cursor-pointer"
-        >
-          <Palette className="w-4 h-4" />
-          <span>Custom Theme</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -3,22 +3,21 @@ import { Github } from 'lucide-react';
 import Header from '@/components/Header';
 import VybeServices from '@/components/VybeServices';
 import ProjectWorkspace from '@/components/ProjectWorkspace';
-import BIMViewer from '@/components/BIMViewer';
+import BIMViewer from '@/components/bim-viewer';
 import Vyber from '@/components/Vyber';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 custom:bg-gradient-to-br custom:from-purple-900 custom:via-indigo-900 custom:to-purple-800 transition-colors duration-300">
+    <div className="min-h-screen bg-theme transition-colors duration-300">
       <Header />
-      
       <main className="container mx-auto px-6 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-synapse-dark dark:text-white custom:text-white mb-4 transition-colors duration-300">
+            <h2 className="text-4xl font-bold heading mb-4 transition-colors duration-300">
               Welcome to Design Synapse
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 custom:text-purple-100 max-w-3xl mx-auto transition-colors duration-300">
+            <p className="text-xl max-w-3xl mx-auto transition-colors duration-300 text-foreground">
               The unified platform that integrates AI, BIM, and professional design tools to transform your construction and design workflows. 
               Experience the future of architectural collaboration.
             </p>
@@ -26,21 +25,21 @@ const Index = () => {
           
           {/* Stats Banner */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-            <div className="text-center p-6 bg-white dark:bg-gray-800 custom:bg-purple-800/30 rounded-xl shadow-sm border dark:border-gray-700 custom:border-purple-500/30 transition-colors duration-300">
+            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
               <div className="text-3xl font-bold text-synapse-blue mb-2">15+</div>
-              <div className="text-gray-600 dark:text-gray-300 custom:text-purple-200">Integrated Tools</div>
+              <div className="text-foreground">Integrated Tools</div>
             </div>
-            <div className="text-center p-6 bg-white dark:bg-gray-800 custom:bg-purple-800/30 rounded-xl shadow-sm border dark:border-gray-700 custom:border-purple-500/30 transition-colors duration-300">
+            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
               <div className="text-3xl font-bold text-synapse-teal mb-2">200%</div>
-              <div className="text-gray-600 dark:text-gray-300 custom:text-purple-200">Faster Workflows</div>
+              <div className="text-foreground">Faster Workflows</div>
             </div>
-            <div className="text-center p-6 bg-white dark:bg-gray-800 custom:bg-purple-800/30 rounded-xl shadow-sm border dark:border-gray-700 custom:border-purple-500/30 transition-colors duration-300">
+            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
               <div className="text-3xl font-bold text-synapse-orange mb-2">24/7</div>
-              <div className="text-gray-600 dark:text-gray-300 custom:text-purple-200">AI Assistant</div>
+              <div className="text-foreground">AI Assistant</div>
             </div>
-            <div className="text-center p-6 bg-white dark:bg-gray-800 custom:bg-purple-800/30 rounded-xl shadow-sm border dark:border-gray-700 custom:border-purple-500/30 transition-colors duration-300">
+            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
               <div className="text-3xl font-bold text-synapse-blue mb-2">∞</div>
-              <div className="text-gray-600 dark:text-gray-300 custom:text-purple-200">Possibilities</div>
+              <div className="text-foreground">Possibilities</div>
             </div>
           </div>
         </div>
