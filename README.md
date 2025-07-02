@@ -68,9 +68,9 @@ Pull requests are welcome! For major changes, please open an issue first.
 
 ---
 
-## 📸 Preview
+## 📸 Previews
 
-![Chat UI Screenshot](https://placehold.co/800x400?text=DesignSynapse+Chat+UI)
+![DesignSynapse Dark Mode Preview](docs/preview-darkmode.png)
 
 ---
 
