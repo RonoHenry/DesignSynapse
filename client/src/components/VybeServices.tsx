@@ -6,7 +6,7 @@ import { ArrowUp, Edit, Image, Calendar } from 'lucide-react';
 const VybeServices = () => {
   const services = [
     {
-      name: 'Vybe Design',
+      name: 'Design',
       description: 'Conceptual design and iteration with AI-powered creativity',
       icon: Edit,
       color: 'synapse-gradient',
@@ -14,7 +14,7 @@ const VybeServices = () => {
       action: 'Start Designing'
     },
     {
-      name: 'Vybe Draft',
+      name: 'Draft',
       description: 'Technical drawings and BIM models with precision',
       icon: Calendar,
       color: 'synapse-gradient',
@@ -22,7 +22,7 @@ const VybeServices = () => {
       action: 'Open Drafting'
     },
     {
-      name: 'Vybe Render',
+      name: 'Render',
       description: 'Photorealistic visuals and motion graphics',
       icon: Image,
       color: 'synapse-gradient-orange',
@@ -30,7 +30,7 @@ const VybeServices = () => {
       action: 'Create Render'
     },
     {
-      name: 'Vybe Quote',
+      name: 'Quote',
       description: 'Instant BOQ and cost estimates with accuracy',
       icon: ArrowUp,
       color: 'synapse-gradient',

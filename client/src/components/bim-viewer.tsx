@@ -8,6 +8,7 @@ import { Settings, Calendar, Users, Image } from 'lucide-react';
 const BIMViewer = () => {
   return (
     <div className="mt-8">
+      {/* ...DAEC Platform Banner removed to avoid duplication... */}
       <Card className="border-0 shadow-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -36,15 +37,15 @@ const BIMViewer = () => {
             </TabsList>
             
             <TabsContent value="3d-view" className="mt-6">
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl h-96 flex items-center justify-center relative overflow-hidden">
+              <div className="bg-card text-card-foreground rounded-xl h-96 flex items-center justify-center relative overflow-hidden">
                 {/* Mock 3D Viewer */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-teal-500/10"></div>
                 <div className="text-center z-10">
                   <div className="w-20 h-20 synapse-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Image className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-synapse-dark mb-2">Interactive BIM Viewer</h3>
-                  <p className="text-gray-600 mb-4">Load your Revit, ArchiCAD, or other BIM models here</p>
+                  <h3 className="text-lg font-semibold heading mb-2">Interactive BIM Viewer</h3>
+                  <p className="mb-4 text-card-foreground">Load your Revit, ArchiCAD, or other BIM models here</p>
                   <Button className="synapse-gradient text-white border-0">
                     Load Model
                   </Button>
@@ -52,13 +53,13 @@ const BIMViewer = () => {
                 
                 {/* Mock viewer controls */}
                 <div className="absolute bottom-4 left-4 space-y-2">
-                  <Button size="sm" variant="outline" className="bg-white/80 backdrop-blur">
+                  <Button size="sm" variant="outline" className="bg-card/80 text-card-foreground border border-border backdrop-blur hover:bg-card/90 transition-colors">
                     Zoom Fit
                   </Button>
-                  <Button size="sm" variant="outline" className="bg-white/80 backdrop-blur">
+                  <Button size="sm" variant="outline" className="bg-card/80 text-card-foreground border border-border backdrop-blur hover:bg-card/90 transition-colors">
                     Measure
                   </Button>
-                  <Button size="sm" variant="outline" className="bg-white/80 backdrop-blur">
+                  <Button size="sm" variant="outline" className="bg-card/80 text-card-foreground border border-border backdrop-blur hover:bg-card/90 transition-colors">
                     Section
                   </Button>
                 </div>

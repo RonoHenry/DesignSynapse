@@ -1,46 +1,42 @@
 import React from 'react';
+import DAECBanner from '@/components/ui/DAECBanner';
+import SmartProjectInsights from '@/components/ui/SmartProjectInsights';
 import { Github } from 'lucide-react';
 import Header from '@/components/Header';
 import VybeServices from '@/components/VybeServices';
 import ProjectWorkspace from '@/components/ProjectWorkspace';
 import BIMViewer from '@/components/bim-viewer';
 import Vyber from '@/components/Vyber';
+import SustainabilityBadges from '@/components/ui/SustainabilityBadges';
+import ProjectHealth from '@/components/ui/ProjectHealth';
+import DesignGallery from '@/components/ui/DesignGallery';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-theme transition-colors duration-300">
       <Header />
       <main className="container mx-auto px-6 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold heading mb-4 transition-colors duration-300">
-              Welcome to Design Synapse
-            </h2>
-            <p className="text-xl max-w-3xl mx-auto transition-colors duration-300 text-foreground">
-              The unified platform that integrates AI, BIM, and professional design tools to transform your construction and design workflows. 
-              Experience the future of architectural collaboration.
-            </p>
+        {/* DAEC Platform Banner (replaces Welcome Section) */}
+        <DAECBanner />
+        {/* Smart Project Insights (replaces second DAEC banner) */}
+        <SmartProjectInsights />
+        {/* Stats Banner */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+          <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
+            <div className="text-3xl font-bold text-synapse-blue mb-2">15+</div>
+            <div className="text-foreground">Integrated Tools</div>
           </div>
-          
-          {/* Stats Banner */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
-              <div className="text-3xl font-bold text-synapse-blue mb-2">15+</div>
-              <div className="text-foreground">Integrated Tools</div>
-            </div>
-            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
-              <div className="text-3xl font-bold text-synapse-teal mb-2">200%</div>
-              <div className="text-foreground">Faster Workflows</div>
-            </div>
-            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
-              <div className="text-3xl font-bold text-synapse-orange mb-2">24/7</div>
-              <div className="text-foreground">AI Assistant</div>
-            </div>
-            <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
-              <div className="text-3xl font-bold text-synapse-blue mb-2">∞</div>
-              <div className="text-foreground">Possibilities</div>
-            </div>
+          <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
+            <div className="text-3xl font-bold text-synapse-teal mb-2">200%</div>
+            <div className="text-foreground">Faster Workflows</div>
+          </div>
+          <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
+            <div className="text-3xl font-bold text-synapse-orange mb-2">24/7</div>
+            <div className="text-foreground">AI Assistant</div>
+          </div>
+          <div className="text-center p-6 bg-card text-card-foreground rounded-xl shadow-sm border border-border transition-colors duration-300">
+            <div className="text-3xl font-bold text-synapse-blue mb-2">∞</div>
+            <div className="text-foreground">Possibilities</div>
           </div>
         </div>
 
@@ -49,9 +45,18 @@ const Index = () => {
         
         {/* Project Workspace */}
         <ProjectWorkspace />
-        
+
+        {/* Design Gallery */}
+        <DesignGallery />
+
         {/* BIM Viewer */}
         <BIMViewer />
+
+        {/* Project Health Section */}
+        <ProjectHealth />
+
+        {/* Sustainability & Compliance Badges */}
+        <SustainabilityBadges />
       </main>
 
       {/* GitHub Link - Bottom Left */}
