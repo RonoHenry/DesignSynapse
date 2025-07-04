@@ -1,4 +1,6 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchProjects } from '@/services/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -6,35 +8,9 @@ import { Progress } from '@/components/ui/progress';
 import { Calendar, Users, Clock } from 'lucide-react';
 
 const ProjectWorkspace = () => {
-  const recentProjects = [
-    {
-      name: 'Eco Office Complex',
-      client: 'GreenTech Solutions',
-      progress: 75,
-      status: 'Rendering',
-      lastUpdate: '2 hours ago',
-      team: 5,
-      deadline: '2024-01-15'
-    },
-    {
-      name: 'Modern Residential Tower',
-      client: 'Urban Living Corp',
-      progress: 45,
-      status: 'Design Phase',
-      lastUpdate: '1 day ago',
-      team: 8,
-      deadline: '2024-02-20'
-    },
-    {
-      name: 'Industrial Warehouse',
-      client: 'LogiFlow Industries',
-      progress: 90,
-      status: 'Final Review',
-      lastUpdate: '3 hours ago',
-      team: 3,
-      deadline: '2024-01-10'
-    }
-  ];
+
+  const { data, isLoading, error } = useQuery(['projects'], fetchProjects);
+  const recentProjects = data || [];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -44,6 +20,13 @@ const ProjectWorkspace = () => {
       default: return 'bg-gray-100 text-gray-800';
     }
   };
+
+  if (isLoading) {
+    return <div className="text-center text-lg text-gray-400 py-12">Loading projects...</div>;
+  }
+  if (error) {
+    return <div className="text-center text-lg text-red-500 py-12">Error loading projects.</div>;
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -56,7 +39,7 @@ const ProjectWorkspace = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             {recentProjects.map((project, index) => (
-              <div key={index} className="p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
+              <div key={project.id || index} className="p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="font-semibold text-synapse-dark">{project.name}</h3>

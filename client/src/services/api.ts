@@ -1,12 +1,19 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
-});
+const API_URL = import.meta.env.VITE_API_URL;
 
-export const fetchProjects = () => api.get('/api/v1/projects');
-export const fetchProducts = () => api.get('/api/v1/products');
-// Add more endpoints as needed
+export const fetchProducts = async () => {
+  const res = await axios.get(`${API_URL}/products`);
+  return res.data;
+};
 
-export default api;
+export const fetchProjects = async () => {
+  const res = await axios.get(`${API_URL}/projects`);
+  return res.data;
+};
+
+export const fetchVendors = async () => {
+  const res = await axios.get(`${API_URL}/vendors`);
+  return res.data;
+};
+// Add more as needed
