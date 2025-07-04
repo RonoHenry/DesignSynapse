@@ -35,20 +35,30 @@ import VendorProductLibrary from '@/components/ui/VendorProductLibrary';
               <Package className="w-5 h-5 text-indigo-400" />
               Vendor Product Library
             </div>
-            <div className="mb-2 text-sm text-muted-foreground">Browse and stage products from trusted vendors. Plug items directly into your BIM workflow.</div>
+            <div className="mb-2 text-sm text-muted-foreground">Browse Products / Vendors</div>
+            {/* Filter Buttons */}
             <div className="flex gap-2 mb-4">
-              <button className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition">Vendors</button>
-              <button className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition">Categories</button>
-              <button className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition">All Products</button>
+              <button
+                className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition"
+                onClick={() => window.dispatchEvent(new CustomEvent('vendor-product-filter', { detail: { filter: 'vendors' } }))}
+              >
+                Vendors
+              </button>
+              <button
+                className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition"
+                onClick={() => window.dispatchEvent(new CustomEvent('vendor-product-filter', { detail: { filter: 'categories' } }))}
+              >
+                Categories
+              </button>
+              <button
+                className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition"
+                onClick={() => window.dispatchEvent(new CustomEvent('vendor-product-filter', { detail: { filter: 'all' } }))}
+              >
+                All Products
+              </button>
             </div>
-            <div className="flex gap-2 mb-4">
-              <button className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition">Vendors</button>
-              <button className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition">Categories</button>
-              <button className="px-3 py-1 rounded bg-indigo-700 text-white text-xs font-semibold hover:bg-indigo-800 transition">All Products</button>
-            </div>
-            <div className="max-h-72 overflow-y-auto">
-              <VendorProductLibrary />
-            </div>
+            {/* Filtered VendorProductLibrary only, no duplicate headers or search */}
+            <VendorProductLibrary />
           </PopoverContent>
         </Popover>
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
@@ -234,7 +244,7 @@ const SmartProjectInsights = () => (
               <Package className="w-5 h-5 text-indigo-400" />
               Vendor Product Library
             </div>
-            <div className="mb-2 text-sm text-muted-foreground">Browse and stage products from trusted vendors. Plug items directly into your BIM workflow.</div>
+            <div className="mb-2 text-sm text-muted-foreground">Browse Products / Vendors</div>
             <div className="max-h-72 overflow-y-auto">
               <VendorProductLibrary />
             </div>

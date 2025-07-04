@@ -36,49 +36,66 @@ const mockProducts = [
   },
 ];
 
-const VendorProductLibrary = () => (
-  <div className="mb-12">
-    <div className="flex items-center justify-between mb-6">
-      <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
-        <ShoppingCart className="w-7 h-7 text-synapse-orange" />
-        Vendor Product Library
-      </h2>
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-        <input
-          type="text"
-          placeholder="Search products, vendors..."
-          className="pl-10 pr-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-        />
+import { useEffect, useState } from 'react';
+
+const FILTERS = [
+  { label: 'Vendors', value: 'vendors' },
+  { label: 'Categories', value: 'categories' },
+  { label: 'All Products', value: 'all' },
+];
+
+const VendorProductLibrary = () => {
+  const [filter, setFilter] = useState('all');
+  const [products, setProducts] = useState(mockProducts);
+
+  useEffect(() => {
+    const handler = (e) => {
+      const customEvent = e;
+      if (customEvent.detail && customEvent.detail.filter) {
+        setFilter(customEvent.detail.filter);
+      }
+    };
+    window.addEventListener('vendor-product-filter', handler);
+    return () => window.removeEventListener('vendor-product-filter', handler);
+  }, []);
+
+  useEffect(() => {
+    let filtered;
+    if (filter === 'vendors') {
+      const seen = new Set();
+      filtered = mockProducts.filter((p) => {
+        if (seen.has(p.vendor)) return false;
+        seen.add(p.vendor);
+        return true;
+      });
+    } else if (filter === 'categories') {
+      const seen = new Set();
+      filtered = mockProducts.filter((p) => {
+        if (seen.has(p.category)) return false;
+        seen.add(p.category);
+        return true;
+      });
+    } else {
+      filtered = mockProducts;
+    }
+    setProducts(filtered);
+  }, [filter]);
+
+  return (
+    <div className="mb-4">
+      <div className="flex gap-2 mb-2">
+        {FILTERS.map((f) => (
+          <button
+            key={f.value}
+            className={`px-3 py-1 rounded text-xs font-semibold transition ${filter === f.value ? 'bg-indigo-800 text-white' : 'bg-indigo-700 text-white hover:bg-indigo-800'}`}
+            onClick={() => setFilter(f.value)}
+          >
+            {f.label}
+          </button>
+        ))}
       </div>
     </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-      {mockProducts.map((item) => (
-        <div key={item.id} className="bg-card rounded-xl shadow-lg overflow-hidden group border border-border hover:scale-105 transition-transform duration-300 flex flex-col">
-          <div className="h-32 bg-gray-900 flex items-center justify-center overflow-hidden">
-            <img src={item.image} alt={item.name} className="object-cover w-full h-full group-hover:opacity-90 transition-opacity duration-300" />
-          </div>
-          <div className="p-4 flex-1 flex flex-col justify-between">
-            <div>
-              <div className="text-lg font-semibold text-foreground mb-1 flex items-center gap-2">
-                {item.name}
-                <span className="inline-flex items-center px-2 py-0.5 rounded bg-muted text-xs text-muted-foreground ml-2">
-                  <Tag className="w-3 h-3 mr-1" />{item.category}
-                </span>
-              </div>
-              <div className="text-sm text-muted-foreground mb-1">by {item.vendor}</div>
-            </div>
-            <div className="flex items-center justify-between mt-2">
-              <div className="text-synapse-orange font-bold text-lg">${item.price}</div>
-              <button className="px-3 py-1 bg-synapse-orange text-white rounded hover:bg-orange-600 text-xs font-semibold transition flex items-center gap-1">
-                <ShoppingCart className="w-4 h-4" /> Stage
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 export default VendorProductLibrary;
