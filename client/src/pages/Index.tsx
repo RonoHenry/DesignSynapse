@@ -1,6 +1,9 @@
+// import VendorProductLibrary from '@/components/ui/VendorProductLibrary';
+import StageProduct from '@/components/ui/StageProduct';
 import React from 'react';
 import DAECBanner from '@/components/ui/DAECBanner';
 import SmartProjectInsights from '@/components/ui/SmartProjectInsights';
+// LogisticsOverview is now imported in SmartProjectInsights
 import { Github } from 'lucide-react';
 import Header from '@/components/Header';
 import VybeServices from '@/components/VybeServices';
@@ -42,15 +45,20 @@ const Index = () => {
 
         {/* Vybe Services */}
         <VybeServices />
-        
+
         {/* Project Workspace */}
         <ProjectWorkspace />
 
-        {/* Design Gallery */}
-        <DesignGallery />
-
         {/* BIM Viewer */}
         <BIMViewer />
+
+        {/* Stage Product - Interactive BIM Product Staging */}
+        <StageProduct />
+
+
+
+        {/* Design Gallery */}
+        <DesignGallery />
 
         {/* Project Health Section */}
         <ProjectHealth />
