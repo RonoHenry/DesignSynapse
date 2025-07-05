@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,42 +46,36 @@
   }
 
   .dark {
-    --background: 222 47% 7%; /* deep blue-black */
-    --foreground: 210 40% 96%;
+    --background: 220 39% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 222 47% 10%; /* slightly lighter for cards */
+    --card: 220 39% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 12%;
+    --popover: 220 39% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 200 98% 60%; /* vibrant blue for accents */
-    --primary-foreground: 222 47% 7%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 220 39% 11%;
 
-    --secondary: 265 60% 18%; /* deep purple for secondary */
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 222 20% 16%;
+    --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 170 100% 35%; /* teal accent */
+    --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 80% 50%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 222 20% 18%;
-    --input: 222 20% 18%;
-    --ring: 200 98% 60%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
 
-    /* Artistic gradients and custom colors */
-    --synapse-blue: 200 98% 60%;
-    --synapse-teal: 170 100% 35%;
-    --synapse-orange: 30 98% 60%;
-    --synapse-dark: 222 47% 7%;
-    --synapse-gray: 222 20% 16%;
-    /* Glow effect for cards */
-    --card-glow: 200 98% 60% / 0.10;
+    /* Dark theme synapse colors */
+    --synapse-gray: 220 39% 15%;
   }
 
   .custom {
@@ -123,13 +118,11 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    @apply border-border;
   }
 
-  html, body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    transition: background 0.3s, color 0.3s;
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   }
 }
@@ -137,30 +130,10 @@
 @layer components {
   .synapse-gradient {
     background: linear-gradient(135deg, hsl(var(--synapse-blue)) 0%, hsl(var(--synapse-teal)) 100%);
-    box-shadow: 0 4px 32px 0 hsl(var(--synapse-blue) / 0.10);
   }
-
+  
   .synapse-gradient-orange {
     background: linear-gradient(135deg, hsl(var(--synapse-orange)) 0%, #ff6b35 100%);
-    box-shadow: 0 4px 32px 0 hsl(var(--synapse-orange) / 0.10);
-  }
-
-  .dark .card, .dark .bg-card {
-    box-shadow: 0 2px 24px 0 hsl(var(--card-glow));
-    border: 1px solid hsl(var(--border));
-    background: hsl(var(--card));
-    transition: background 0.3s, box-shadow 0.3s;
-  }
-
-  /* Ensure all headings and main containers inherit the foreground color */
-  h1, h2, h3, h4, h5, h6, .heading, .main-heading {
-    color: hsl(var(--foreground));
-    transition: color 0.3s;
-  }
-
-  /* Utility for forcing background to theme background */
-  .bg-theme {
-    background-color: hsl(var(--background)) !important;
   }
   
   .glass-effect {
@@ -188,20 +161,20 @@
   .text-synapse-blue {
     color: hsl(var(--synapse-blue));
   }
+  
   .text-synapse-teal {
     color: hsl(var(--synapse-teal));
   }
+  
   .text-synapse-orange {
     color: hsl(var(--synapse-orange));
   }
+  
   .bg-synapse-dark {
     background-color: hsl(var(--synapse-dark));
   }
+  
   .bg-synapse-gray {
     background-color: hsl(var(--synapse-gray));
-  }
-  .glow-border {
-    box-shadow: 0 0 0 2px hsl(var(--primary)), 0 2px 24px 0 hsl(var(--primary) / 0.10);
-    border-radius: var(--radius);
   }
 }

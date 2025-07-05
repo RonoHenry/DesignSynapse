@@ -27,7 +27,20 @@ def get_project(project_id: int, db: Session = Depends(get_db)):
 @router.get("/projects/", response_model=List[dict])
 def list_projects(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     projects = crud.list_projects(db, skip, limit)
-    return [{"id": p.id, "name": p.name, "description": p.description} for p in projects]
+    # Return all fields expected by the frontend, with mock/defaults if missing
+    def project_to_dict(p):
+        return {
+            "id": p.id,
+            "name": p.name,
+            "description": p.description,
+            "client": getattr(p.user, "name", "Client Name"),
+            "progress": 70,  # Placeholder, replace with real logic if available
+            "status": "Design Phase",  # Placeholder, replace with real status if available
+            "lastUpdate": p.created_at.strftime("%Y-%m-%d") if p.created_at else "2025-01-01",
+            "team": 5,  # Placeholder, replace with real team size if available
+            "deadline": p.end_date.strftime("%Y-%m-%d") if p.end_date else "2025-12-31",
+        }
+    return [project_to_dict(p) for p in projects]
 
 @router.put("/projects/{project_id}", response_model=dict)
 def update_project(project_id: int, name: str = None, description: str = None, db: Session = Depends(get_db)):
