@@ -13,6 +13,11 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+# Import all models to register them with Base.metadata
+from app.models.user import User
+from app.models.project import Project
+from app.models.product import Product
+
 # Dependency for FastAPI
 def get_db() -> Generator:
     db = SessionLocal()
