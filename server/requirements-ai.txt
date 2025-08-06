@@ -7,12 +7,11 @@ pandas>=2.0.0
 
 # Deep Learning specific
 torchvision>=0.15.0
-pytorch3d>=0.7.0  # For 3D operations
 diffusers>=0.19.0  # For diffusion models
 
-# BIM integration
-ifcopenshell>=0.7.0  # For IFC file handling
-pythonocc-core>=7.7.0  # For CAD operations
+# 3D Processing
+trimesh>=4.0.0  # For 3D mesh processing
+# Note: Additional 3D processing libraries will be added when Python 3.13 support is available
 
 # Visualization
 matplotlib>=3.7.0
